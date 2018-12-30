@@ -4,7 +4,12 @@ from anki_vector.util import degrees, distance_mm, speed_mmps
 import functools
 import threading
 import time
+import random
+import sys
+import os
 animation = 'anim_fistbump_success_01'
+randomamount = random.randint(1,6)
+n=0
 
 def main():
     evt = threading.Event()
@@ -21,18 +26,14 @@ def main():
                 robot.world.connected_light_cube,
                 num_retries=3)
             time.sleep(1.0)
-            robot.motors.set_lift_motor(2)
-            robot.say_text("1")
-            robot.motors.set_lift_motor(-2)
-            time.sleep(2)
-            robot.motors.set_lift_motor(2)
-            robot.say_text("2")
-            robot.motors.set_lift_motor(-2)
-            time.sleep(2)
-            robot.motors.set_lift_motor(2)
-            robot.say_text("3")
-            robot.motors.set_lift_motor(-2)
+            for number in range(randomamount):
+                robot.motors.set_lift_motor(2)
+                robot.say_text(str(number+1))
+                robot.motors.set_lift_motor(-2)
+                time.sleep(5)
             robot.anim.play_animation(animation)
+            time.sleep(3)
+            sys.exit()
             robot.events.subscribe(on_tapped_cube, Events.object_tapped)
         evt.set()
 
