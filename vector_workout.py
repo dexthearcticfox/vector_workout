@@ -30,7 +30,7 @@ def main():
                 robot.motors.set_lift_motor(2)
                 robot.say_text(str(number+1))
                 robot.motors.set_lift_motor(-2)
-                time.sleep(5)
+                time.sleep(1)
             robot.anim.play_animation(animation)
             time.sleep(3)
             sys.exit()
