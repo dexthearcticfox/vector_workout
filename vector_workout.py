@@ -33,6 +33,8 @@ def main():
                 time.sleep(1)
             robot.anim.play_animation(animation)
             time.sleep(3)
+            robot.conn.close()
+            time.sleep(3)
             sys.exit()
             robot.events.subscribe(on_tapped_cube, Events.object_tapped)
         evt.set()
